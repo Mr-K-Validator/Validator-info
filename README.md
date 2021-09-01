@@ -53,3 +53,8 @@ sudo systemctl start Validator-info
 ## log
 journalctl -f -u Validator-info.service
 ```
+
+## Screenshot
+![grafana](https://github.com/Mr-K-Validator/Validator-info/blob/master/screenshot/example_grafana.png)
+![prometheus](https://github.com/Mr-K-Validator/Validator-info/blob/master/screenshot/example_prometheus.png)
+![log](https://github.com/Mr-K-Validator/Validator-info/blob/master/screenshot/example_log.png)
