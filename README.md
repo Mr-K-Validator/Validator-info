@@ -1,55 +1,55 @@
 # Cosmos-IE
-![CreatePlan](https://img.shields.io/badge/release-v3.0.3-red)
+![CreatePlan](https://img.shields.io/badge/release-v4.0.0-red)
 ![CreatePlan](https://img.shields.io/badge/go-1.15%2B-blue)
 ![CreatePlan](https://img.shields.io/badge/license-Apache--2.0-green)  
-Integrated Exporter for CosmosSDK
+Exporter for Validator info.
 
 ## Introduction
 This Prometheus exporter is for monitoring information which is not provided from Tendermint’s basic Prometheus exporter(localhost:26660)
 
 ## List of supported chains
-Cosmos(cosmoshub-4), IRISnet(irishub-1), BandProtocol-testnet(band-laozi-testnet1), Terra(bombay)
+Rizon(groot), Terra(bombay)
 
 ## Install
 ```bash
 cd $HOME
-git clone https://github.com/node-a-team/Cosmos-IE.git
-cd $HOME/Cosmos-IE
+git clone https://github.com/Mr-K-Validator/Validator-info.git
+cd $HOME/Validator-info
 
 go build
 
-./Cosmos-IE version
-## Cosmos-IE v3.0.3
+./Validator-info version
+## Validator-info v4.0.0
 ```
 
-## Service(ex: cosmos)
-- **--chain** _string_: Chain name of the monitoring node(cosmos | iris | band | terra)
+## Service(ex: rizon)
+- **--chain** _string_: Chain name of the monitoring node(rizon | terra)
 ```bash
 ## Create a systemd service
-sudo tee /etc/systemd/system/Cosmos-IE.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/Validator-info.service > /dev/null <<EOF
 [Unit]
-Description=Integrated Exporter for CosmosSDK
+Description=Exporter for Validator info
 After=network-online.target
 
 [Service]
 User=${USER}
-ExecStart=$HOME/Cosmos-IE/Cosmos-IE run \
-  --chain "cosmos" \
-  --oper-addr "cosmosvaloper14l0fp639yudfl46zauvv8rkzjgd4u0zk2aseys"
+ExecStart=$HOME/Validator-info/Validator-info run \
+  --chain "rizon" \
+  --oper-addr "rizonvaloper1tqv36eh27pnkta5pmlzrzmcp4zc09qcz7x086z"
 Restart=always
 RestartSec=3
 StandardOutput=syslog
 StandardError=syslog
-SyslogIdentifier=Cosmos-IE
+SyslogIdentifier=Validator-info
 
 [Install]
 WantedBy=multi-user.target
 EOF
 
 ## Start service
-sudo systemctl enable Cosmos-IE
-sudo systemctl start Cosmos-IE
+sudo systemctl enable Validator-info
+sudo systemctl start Validator-info
 
 ## log
-journalctl -f -u Cosmos-IE.service
+journalctl -f -u Validator-info.service
 ```

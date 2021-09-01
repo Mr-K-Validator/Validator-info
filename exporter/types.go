@@ -1,7 +1,7 @@
 package exporter
 
 import (
-	rest "github.com/node-a-team/Cosmos-IE/rest/common"
+	rest "github.com/Mr-K-Validator/Validator-info/rest/common"
 
 )
 
@@ -140,6 +140,8 @@ func getDenomList(chain string) []string {
 	case "emoney":
 		dList = []string{"ungm",
 				"eeur", "echf", "edkk", "enok", "esek"}
+	case "rizon":
+		dList = []string{"uatolo"}
 	}
 
 	return  dList

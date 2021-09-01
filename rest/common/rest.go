@@ -5,9 +5,9 @@ import (
 	"go.uber.org/zap"
 	"os/exec"
 
-	utils "github.com/node-a-team/Cosmos-IE/utils"
-	terra "github.com/node-a-team/Cosmos-IE/rest/chains/terra"
-	band "github.com/node-a-team/Cosmos-IE/rest/chains/band"
+	utils "github.com/Mr-K-Validator/Validator-info/utils"
+	terra "github.com/Mr-K-Validator/Validator-info/rest/chains/terra"
+	band "github.com/Mr-K-Validator/Validator-info/rest/chains/band"
 )
 
 var (
@@ -64,6 +64,7 @@ func GetData(chain string, blockHeight int64, blockData Blocks, denom string, lo
                 rd.Delegations = getDelegations(log)
         }
 	*/
+	rd.Delegations = getDelegations(log)
 
 	rd.Balances = getBalances(AccAddr, log)
 	rd.Rewards = getRewards(log)
@@ -72,6 +73,8 @@ func GetData(chain string, blockHeight int64, blockData Blocks, denom string, lo
 
 	consHexAddr := utils.Bech32AddrToHexAddr(rd.Validatorsets[rd.Validator.Consensus_pubkey.Key][0], log)
         rd.Commit = getCommit(blockData, consHexAddr)
+
+	rd.Gov = getGovInfo(log)
 //        rd.Commit = getCommit(blockData)
 
 	if chain == "band" { rd.Oracle_band = band.CheckOracleActive(Addr, OperAddr, log) }

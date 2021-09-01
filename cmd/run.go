@@ -6,15 +6,7 @@ import (
 
         "github.com/spf13/cobra"
 
-//	cosmos "github.com/node-a-team/Cosmos-IE/chains/cosmos"
-//        terra "github.com/node-a-team/Cosmos-IE/chains/terra"
-//        iris "github.com/node-a-team/Cosmos-IE/chains/iris"
-//        kava "github.com/node-a-team/Cosmos-IE/chains/kava"
-//        iov "github.com/node-a-team/Cosmos-IE/chains/iov"
-//        emoney "github.com/node-a-team/Cosmos-IE/chains/emoney"
-//        band "github.com/node-a-team/Cosmos-IE/chains/bandprotocol"
-
-	exporter "github.com/node-a-team/Cosmos-IE/exporter"
+	exporter "github.com/Mr-K-Validator/Validator-info/exporter"
 
 )
 
@@ -35,8 +27,8 @@ var runCmd = &cobra.Command{
         Use:   "run",
         Short: "Validator Operator Address",
         Long: `Be sure to enter either Validator Operator Address
-ex#1_Local REST Server) Cosmos-IE run --chain cosmos --oper-addr cosmosvaloper14l0fp639yudfl46zauvv8rkzjgd4u0zk2aseys
-ex#2_Remote REST Server) Cosmos-IE run --chain cosmos --oper-addr cosmosvaloper14l0fp639yudfl46zauvv8rkzjgd4u0zk2aseys --rest-server 192.168.0.10:1317 
+ex#1_Local REST Server) Validator-info run --chain rizon --oper-addr rizonvaloper1tqv36eh27pnkta5pmlzrzmcp4zc09qcz7x086z
+ex#2_Remote REST Server) Validator-info run --chain rizon --oper-addr rizonvaloper1tqv36eh27pnkta5pmlzrzmcp4zc09qcz7x086z --rest-server 192.168.0.10:1317 
 `,
         Run: func(cmd *cobra.Command, args []string) {
 		check_chain()
@@ -77,18 +69,6 @@ func check_chain() {
 
 func run() {
 	switch chain {
-//                case "cosmos":
-//                        cosmos.Main(listenPort)
-//                case "terra","emoney":
-//                        exporter.Go(chain, listenPort)
-//                case "iris":
-//                        iris.Main(listenPort)
-//                case "kava":
-//                        kava.Main(listenPort)
-//                case "iov":
-//                        iov.Main(listenPort)
-//		case "band":
-//                        band.Main(listenPort)
 		default:
 			exporter.Go(chain, listenPort)
 

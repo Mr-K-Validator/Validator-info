@@ -6,7 +6,7 @@ import (
 	"go.uber.org/zap"
 	"encoding/json"
 
-	utils "github.com/node-a-team/Cosmos-IE/utils"
+	utils "github.com/Mr-K-Validator/Validator-info/utils"
 )
 
 type govInfo struct {
@@ -52,6 +52,8 @@ func getGovInfo(log *zap.Logger) govInfo {
 
 	gi.TotalProposalCount = utils.StringToFloat64(g.Pagination.Total)
 	gi.VotingProposalCount = float64(votingCount)
+
+//	fmt.Println("-----> ", gi)
 
 	return gi
 }

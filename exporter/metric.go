@@ -3,8 +3,8 @@ package exporter
 import (
 	"go.uber.org/zap"
 
-	rest "github.com/node-a-team/Cosmos-IE/rest/common"
-	utils "github.com/node-a-team/Cosmos-IE/utils"
+	rest "github.com/Mr-K-Validator/Validator-info/rest/common"
+	utils "github.com/Mr-K-Validator/Validator-info/utils"
 )
 
 

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"go.uber.org/zap"
 	"encoding/json"
-	utils "github.com/node-a-team/Cosmos-IE/utils"
+	utils "github.com/Mr-K-Validator/Validator-info/utils"
 )
 
 type Oracle struct {

@@ -11,7 +11,7 @@ import (
         terra "github.com/terra-project/core/types"
 //	kava "github.com/kava-labs/kava/app"
 	emoney "github.com/e-money/em-ledger/types"
-
+	rizon "github.com/rizon-world/rizon/types"
         "github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -72,6 +72,9 @@ func setConfig(chain string) {
 //			kava.SetBip44CoinType(config)
 	case "emoney":
 		emoney.ConfigureSDK()
+
+	case "rizon":
+		rizon.SetConfig()
 
 	}
 

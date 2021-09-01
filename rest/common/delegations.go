@@ -5,7 +5,7 @@ import (
 	"strings"
 	"go.uber.org/zap"
 	"encoding/json"
-	utils "github.com/node-a-team/Cosmos-IE/utils"
+	utils "github.com/Mr-K-Validator/Validator-info/utils"
 )
 
 type delegations struct {
@@ -24,6 +24,12 @@ type selfDelegation struct {
 //      Height  string  `json:"height"`
         Delegation_response struct {
 		Delegation delegation
+
+		Balance struct {
+                        Denom   string
+                        Amount  string
+                }
+
 	}
 }
 
@@ -56,12 +62,28 @@ func getDelegations(log *zap.Logger) delegationInfo {
         }
 
 	dInfo.DelegationCount = float64(len(d.Delegation_responses))
-
+/*
 	for _, value := range d.Delegation_responses {
 		if AccAddr == value.Delegation.Delegator_address {
 			dInfo.SelfDelegation = utils.StringToFloat64(value.Delegation.Shares)
 		}
 	}
+*/
+	// self
+	var sd selfDelegation
+	res, _ = runRESTCommand("/cosmos/staking/v1beta1/validators/" +OperAddr +"/delegations/" +AccAddr)
+        json.Unmarshal(res, &sd)
+        // log
+        if strings.Contains(string(res), "not found") {
+                // handle error
+                log.Fatal("", zap.Bool("Success", false), zap.String("err", string(res),))
+        } else {
+                log.Info("", zap.Bool("Success", true), zap.String("Self Delegation", sd.Delegation_response.Balance.Amount),)
+		dInfo.SelfDelegation = utils.StringToFloat64(sd.Delegation_response.Balance.Amount)
+        }
+
+
+
 
 
 	return dInfo

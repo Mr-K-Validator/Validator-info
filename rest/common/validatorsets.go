@@ -64,7 +64,6 @@ func getValidatorsets(currentBlockHeight int64, log *zap.Logger) map[string][]st
 		vSetsResult[value.Pub_key.Key] = []string{value.Address, value.Voting_power}
 
 
-
 //		vSetsResult[value.ConsPubKey] = []string{value.ConsAddr, value.VotingPower, value.ProposerPriority, "0"}
 	}
 
